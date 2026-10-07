@@ -1,3 +1,4 @@
+import { getAppUrl } from '@/lib/brand'
 import { NextResponse } from 'next/server'
 import { randomBytes } from 'crypto'
 import { requireOrganization } from '@/lib/auth'
@@ -48,7 +49,7 @@ export async function POST(req: Request) {
       await db.from('customers').update({ portal_token: token }).eq('id', customer.id)
     }
 
-    const baseUrl = process.env.NEXT_PUBLIC_APP_URL ?? 'https://www.quickturno.app'
+    const baseUrl = getAppUrl()
     const reportUrl = `${baseUrl}/r/${token}/${order.id}`
 
     // WhatsApp (si tiene teléfono)

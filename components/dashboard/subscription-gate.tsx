@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { AlertTriangle, Sparkles, XCircle } from 'lucide-react'
-import { TurnoLogo } from '@/components/ui/turno-logo'
+import { AppointmentLogo } from '@/components/ui/appointment-logo'
 
 type SubscriptionStatus = 'trialing' | 'active' | 'suspended' | 'canceled' | 'past_due'
 
@@ -25,7 +25,7 @@ function GateScreen({ icon, title, description, cta }: {
     }}>
       <div style={{ width: '100%', maxWidth: 420, textAlign: 'center' }}>
         <div style={{ marginBottom: 32, display: 'flex', justifyContent: 'center' }}>
-          <TurnoLogo height={24} />
+          <AppointmentLogo height={24} />
         </div>
 
         <div style={{
@@ -96,7 +96,7 @@ export function SubscriptionGate({ status, children }: Props) {
       <GateScreen
         icon={<XCircle size={28} color="#6b7280" />}
         title="Suscripción cancelada"
-        description="Tu suscripción fue cancelada. Puedes reactivarla en cualquier momento para volver a usar Turno."
+        description="Tu suscripción fue cancelada. Puedes reactivarla en cualquier momento para volver a usar Mickerting Appointment."
         cta="Reactivar →"
       />
     )

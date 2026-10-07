@@ -4,7 +4,7 @@ import { useLayoutEffect, useRef, useState, useEffect } from 'react'
 import Link from 'next/link'
 import { Check, MessageSquare, CalendarCheck, BellRing, Users, Smartphone, Zap } from 'lucide-react'
 import { FancyButton } from '@/components/ui/fancy-button'
-import { TurnoLogo } from '@/components/ui/turno-logo'
+import { AppointmentLogo } from '@/components/ui/appointment-logo'
 import { Spotlight } from '@/components/ui/spotlight'
 import { WhatsappMockup } from '@/components/landing/whatsapp-mockup'
 import { HowItWorks } from '@/components/landing/how-it-works'
@@ -57,11 +57,11 @@ function tokens(isDay: boolean) {
 // ── Data ──────────────────────────────────────────────────────────────────────
 
 const FEATURES = [
-  { Icon: MessageSquare, title: 'Nunca pierdas una cita por no contestar', desc: 'Mientras trabajas, Turno responde al instante. Aunque te escriban a las 11 de la noche, la cita queda agendada.' },
-  { Icon: CalendarCheck, title: 'Dos clientes a la misma hora: imposible', desc: 'Turno revisa tu agenda antes de confirmar. Nunca más el "es que a mí me dijeron a las 5".' },
+  { Icon: MessageSquare, title: 'Nunca pierdas una cita por no contestar', desc: 'Mientras trabajas, Mickerting Appointment responde al instante. Aunque te escriban a las 11 de la noche, la cita queda agendada.' },
+  { Icon: CalendarCheck, title: 'Dos clientes a la misma hora: imposible', desc: 'Mickerting Appointment revisa tu agenda antes de confirmar. Nunca más el "es que a mí me dijeron a las 5".' },
   { Icon: BellRing, title: 'Se acabaron los plantones', desc: 'Un día antes le recuerda a tu cliente su cita por WhatsApp. Si no puede ir, te avisa y el espacio se libera para otro.' },
-  { Icon: Users, title: 'Todo tu equipo, cada quien su agenda', desc: 'Cada barbero o profesional con su propio horario, servicios y precios. Turno sabe con quién agendar a cada cliente.' },
-  { Icon: Smartphone, title: 'Tus clientes no instalan nada', desc: 'Usan el WhatsApp que ya tienen en su teléfono. Escriben como siempre y Turno se encarga del resto.' },
+  { Icon: Users, title: 'Todo tu equipo, cada quien su agenda', desc: 'Cada barbero o profesional con su propio horario, servicios y precios. Mickerting Appointment sabe con quién agendar a cada cliente.' },
+  { Icon: Smartphone, title: 'Tus clientes no instalan nada', desc: 'Usan el WhatsApp que ya tienen en su teléfono. Escriben como siempre y Mickerting Appointment se encarga del resto.' },
   { Icon: Zap, title: 'Listo el mismo día', desc: 'Creas tu cuenta, pones tus servicios y horarios, y tu WhatsApp ya contesta solo. Sin técnicos ni instalaciones.' },
 ]
 
@@ -71,7 +71,7 @@ const SEGMENTS = [
     name: 'Barberías y estéticas',
     pain: 'El cliente que te escribe mientras cortas, no espera: agenda con el de enfrente.',
     bullets: [
-      'Turno contesta mientras tú sigues con las tijeras en la mano',
+      'Mickerting Appointment contesta mientras tú sigues con las tijeras en la mano',
       'Cada barbero con su agenda — se acabó el "a mí me dijeron a las 5"',
       'Recordatorio automático: menos sillas vacías por plantones',
     ],
@@ -139,9 +139,9 @@ const SEGMENTS = [
 ]
 
 const FAQ = [
-  { q: '¿Para qué tipos de negocio funciona Turno?', a: 'Para cualquier negocio que trabaje con citas o reservas: barberías, spas y estéticas, psicología, odontología, fisioterapia, laboratorios clínicos, estudios de tatuaje y charters de yates o pesca. Si agendas con clientes o pacientes, Turno funciona para ti.' },
+  { q: '¿Para qué tipos de negocio funciona Mickerting Appointment?', a: 'Para cualquier negocio que trabaje con citas o reservas: barberías, spas y estéticas, psicología, odontología, fisioterapia, laboratorios clínicos, estudios de tatuaje y charters de yates o pesca. Si agendas con clientes o pacientes, Mickerting Appointment funciona para ti.' },
   { q: '¿Necesito un número nuevo de WhatsApp?', a: 'No. Puedes usar tu número actual de WhatsApp Business. Te ayudamos a configurarlo sin costo adicional.' },
-  { q: '¿Mis clientes o pacientes tienen que instalar algo?', a: 'Nada. Usan el WhatsApp que ya tienen en su teléfono. Escriben como siempre y Turno les contesta.' },
+  { q: '¿Mis clientes o pacientes tienen que instalar algo?', a: 'Nada. Usan el WhatsApp que ya tienen en su teléfono. Escriben como siempre y Mickerting Appointment les contesta.' },
   { q: '¿Cuánto cuesta?', a: 'Dos planes: Agenda por $1,500 MXN al mes (calendario, página de reservas, anticipos y recordatorios) o Agenda + Asistente por $2,000 MXN al mes, que suma el bot que contesta y agenda por WhatsApp 24/7. Sin contratos ni permanencia.' },
   { q: '¿Puedo cancelar cuando quiera?', a: 'Sí. Sin penalizaciones ni letras chicas. Cancelas desde tu cuenta en menos de un minuto.' },
 ]
@@ -268,9 +268,9 @@ export function LandingPage() {
       >
         <div className="max-w-5xl mx-auto px-5 flex items-center justify-between" style={{ height: '56px' }}>
           <Link href="/">
-            <TurnoLogo height={36} variant={isDay ? 'light' : 'dark'} />
+            <AppointmentLogo height={36} variant={isDay ? 'light' : 'dark'} />
           </Link>
-          <nav className="hidden md:flex items-center gap-8 text-[13px]" style={{ color: t.muted }}>
+          <nav className="hidden lg:flex items-center gap-6 text-[13px]" style={{ color: t.muted }}>
             <a href="#features"  className="transition-colors hover:opacity-80">Funciones</a>
             <a href="#segments"  className="transition-colors hover:opacity-80">Giros</a>
             <a href="#dashboard" className="transition-colors hover:opacity-80">Sistema</a>
@@ -312,7 +312,7 @@ export function LandingPage() {
               Tu WhatsApp contesta<br />y agenda solo.
             </h1>
             <p data-hero-p className="text-[16px] sm:text-[18px] leading-relaxed mb-9 max-w-md" style={{ color: t.muted, opacity: 0 }}>
-              Mientras tú atiendes, Turno responde los mensajes, agenda las citas
+              Mientras tú atiendes, Mickerting Appointment responde los mensajes, agenda las citas
               y les recuerda a tus clientes que vayan. Para barberías, consultorios,
               clínicas dentales y más.
             </p>
@@ -404,7 +404,7 @@ export function LandingPage() {
           <div data-section-head className="mb-14 sm:mb-20" style={{ opacity: 0 }}>
             <p className="text-[12px] font-semibold uppercase tracking-widest mb-4" style={{ color: t.accent }}>Para tu negocio</p>
             <h2 className="text-[30px] sm:text-[42px] font-bold tracking-[-0.02em] mb-4" style={{ color: t.text }}>Hecho para tu giro.</h2>
-            <p className="text-[16px] max-w-lg" style={{ color: t.muted }}>Cada negocio pierde citas de forma distinta. Turno ataca el dolor exacto del tuyo.</p>
+            <p className="text-[16px] max-w-lg" style={{ color: t.muted }}>Cada negocio pierde citas de forma distinta. Mickerting Appointment ataca el dolor exacto del tuyo.</p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
             {SEGMENTS.map(({ emoji, name, pain, bullets }) => (
@@ -440,7 +440,7 @@ export function LandingPage() {
 
       {/* El sistema detrás del bot */}
       <section id="dashboard" style={{ borderTop: `1px solid ${t.border}` }}>
-        <div className="max-w-5xl mx-auto px-5 py-20 sm:py-28 grid lg:grid-cols-2 gap-14 items-center">
+        <div className="max-w-5xl mx-auto px-5 py-20 sm:py-28 grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
           <div data-section-head style={{ opacity: 0 }}>
             <p className="text-[12px] font-semibold uppercase tracking-widest mb-4" style={{ color: t.accent }}>El sistema detrás del bot</p>
             <h2 className="text-[30px] sm:text-[42px] font-bold tracking-[-0.02em] mb-5" style={{ color: t.text }}>No solo un chatbot. Tu negocio, ordenado.</h2>
@@ -580,17 +580,17 @@ export function LandingPage() {
       <footer style={{ borderTop: `1px solid ${t.border}` }}>
         <div className="max-w-5xl mx-auto px-5 py-7 flex flex-col sm:flex-row items-center justify-between gap-3">
           <Link href="/">
-            <TurnoLogo height={28} variant={isDay ? 'light' : 'dark'} />
+            <AppointmentLogo height={28} variant={isDay ? 'light' : 'dark'} />
           </Link>
-          <p className="text-[13px]" style={{ color: t.subtle }}>© 2026 Turno · Hecho en México</p>
+          <p className="text-[13px]" style={{ color: t.subtle }}>© 2026 Mickerting Appointment · Hecho en México</p>
           <a
-            href="https://axelsandoval.dev"
+            href="https://github.com/AxelSandovalH/Turno"
             target="_blank"
             rel="noopener noreferrer"
             className="text-[13px] transition-colors hover:opacity-80"
             style={{ color: t.subtle }}
           >
-            axelsandoval.dev
+            Basado en Turno
           </a>
         </div>
       </footer>

@@ -10,7 +10,7 @@ export function PaymentSuccessToast() {
 
   useEffect(() => {
     if (params?.get('payment') === 'success') {
-      toast.success('¡Suscripción activada! Bienvenido a Turno AI 🎉')
+      toast.success('¡Suscripción activada! Bienvenido a Mickerting Appointment AI 🎉')
       // Limpiar el query param sin recargar
       router.replace('/appointments')
     }

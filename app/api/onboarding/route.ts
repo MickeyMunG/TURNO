@@ -119,7 +119,7 @@ export async function POST(req: Request) {
     resend.emails.send({
       from: FROM,
       to: email,
-      subject: `¡Bienvenido a QuickTurno, ${name}!`,
+      subject: `¡Bienvenido a Mickerting Appointment, ${name}!`,
       html: welcomeEmailHtml({ businessName: name, whatsappNumber }),
       text: welcomeEmailText({ businessName: name, whatsappNumber }),
     }).catch(err => console.error('[onboarding] welcome email failed:', err))

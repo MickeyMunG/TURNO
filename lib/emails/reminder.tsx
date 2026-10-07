@@ -22,7 +22,7 @@ export function reminderEmailHtml(p: ReminderEmailProps): string {
 
           <tr>
             <td style="padding-bottom:28px;">
-              <span style="font-size:20px;font-weight:700;color:#ffffff;letter-spacing:-0.03em;">Turno</span>
+              <span style="font-size:20px;font-weight:700;color:#ffffff;letter-spacing:-0.03em;">Mickerting Appointment</span>
             </td>
           </tr>
 
@@ -61,7 +61,7 @@ export function reminderEmailHtml(p: ReminderEmailProps): string {
           <tr>
             <td style="padding-top:20px;text-align:center;">
               <p style="margin:0;font-size:11px;color:#333333;">
-                Turno · Recepcionista digital 24/7
+                Mickerting Appointment · Recepcionista digital 24/7
               </p>
             </td>
           </tr>
@@ -86,5 +86,5 @@ Tienes una cita programada:
 
 Si necesitas cancelar, responde el mensaje de WhatsApp.
 
-Turno · Recepcionista digital`
+Mickerting Appointment · Recepcionista digital`
 }

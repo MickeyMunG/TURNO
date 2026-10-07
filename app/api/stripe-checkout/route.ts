@@ -1,3 +1,4 @@
+import { getAppUrl } from '@/lib/brand'
 import { NextResponse } from 'next/server'
 import { stripe } from '@/lib/stripe'
 import { createClient } from '@/lib/supabase/server'
@@ -49,8 +50,8 @@ export async function POST(req: Request) {
           },
         },
       }],
-      success_url: `${process.env.NEXT_PUBLIC_APP_URL}/appointments?payment=success`,
-      cancel_url:  `${process.env.NEXT_PUBLIC_APP_URL}/payment`,
+      success_url: `${getAppUrl()}/appointments?payment=success`,
+      cancel_url:  `${getAppUrl()}/payment`,
       // El webhook usa `plan` para prender/apagar el bot de WhatsApp de la org
       metadata: { organization_id: orgId, plan: plan.key },
       subscription_data: { metadata: { organization_id: orgId, plan: plan.key } },

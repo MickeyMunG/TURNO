@@ -1,3 +1,4 @@
+import { getAppUrl } from '@/lib/brand'
 import { NextResponse } from 'next/server'
 import { stripe } from '@/lib/stripe'
 import { resolvePlan } from '@/lib/plans'
@@ -7,7 +8,7 @@ import { resolvePlan } from '@/lib/plans'
 // Al pagar, el success_url manda a /register?session_id=... y el onboarding
 // reclama la sesión (ver app/api/onboarding/route.ts) para activar la org.
 export async function GET(req: Request) {
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL ?? 'https://www.quickturno.app'
+  const baseUrl = getAppUrl()
   const plan = resolvePlan(new URL(req.url).searchParams.get('plan'))
   try {
     const session = await stripe.checkout.sessions.create({

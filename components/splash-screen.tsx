@@ -2,7 +2,7 @@
 
 import { useLayoutEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
-import { TurnoLogo } from '@/components/ui/turno-logo'
+import { AppointmentLogo } from '@/components/ui/appointment-logo'
 
 export function SplashScreen() {
   const ref = useRef<HTMLDivElement>(null)
@@ -42,7 +42,7 @@ export function SplashScreen() {
       style={{ pointerEvents: 'none' }}
     >
       <div data-splash-logo style={{ opacity: 0, color: '#ffffff' }}>
-        <TurnoLogo height={100} />
+        <AppointmentLogo height={60} />
       </div>
     </div>
   )

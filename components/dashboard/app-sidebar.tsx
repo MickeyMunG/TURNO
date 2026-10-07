@@ -12,7 +12,7 @@ import {
   Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupContent,
   SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem,
 } from '@/components/ui/sidebar'
-import { TurnoLogo } from '@/components/ui/turno-logo'
+import { AppointmentLogo } from '@/components/ui/appointment-logo'
 import { staffLabel as getStaffLabel, customerLabel as getCustomerLabel, staffIcon } from '@/lib/business-type'
 import { getProfile } from '@/lib/profiles/registry'
 import type { Organization } from '@/types/database'
@@ -228,7 +228,7 @@ export function AppSidebar({ organization }: { organization: Organization }) {
                 />
               </div>
             ) : (
-              <TurnoLogo height={28} />
+              <AppointmentLogo height={28} compact />
             )}
           </div>
           <div className="min-w-0">

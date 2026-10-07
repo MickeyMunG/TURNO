@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { APP_NAME, APP_DESCRIPTION } from '@/lib/brand'
 import { Inter, Geist_Mono, Instrument_Serif } from 'next/font/google'
 import { Toaster } from '@/components/ui/sonner'
 import { TooltipProvider } from '@/components/ui/tooltip'
@@ -14,8 +15,10 @@ const instrumentSerif = Instrument_Serif({
 })
 
 export const metadata: Metadata = {
-  title: 'Turno — Recepcionista digital para tu negocio',
-  description: 'Agenda, confirma y cancela citas automáticamente por WhatsApp.',
+  title: { default: `${APP_NAME} — Agenda y recepcionista digital`, template: `%s | ${APP_NAME}` },
+  applicationName: APP_NAME,
+  description: APP_DESCRIPTION,
+  openGraph: { title: APP_NAME, description: APP_DESCRIPTION, locale: 'es_MX', type: 'website' },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

@@ -52,7 +52,7 @@ export default async function ContrarreferenciаPage({ params }: Props) {
       {/* Print-only top bar */}
       <div className="hidden print:flex items-center justify-between px-8 py-3 border-b border-zinc-300 text-xs text-zinc-500">
         <span>{today}</span>
-        <span className="font-semibold tracking-wide">Turno — Recepcionista digital</span>
+        <span className="font-semibold tracking-wide">Mickerting Appointment — Recepcionista digital</span>
       </div>
 
       <div className="max-w-[720px] mx-auto px-8 py-10 space-y-8">
@@ -172,7 +172,7 @@ export default async function ContrarreferenciаPage({ params }: Props) {
         </section>
 
         <p className="text-[10px] text-zinc-400 text-center pt-2">
-          Documento generado por Turno · {today} · Este documento tiene validez oficial conforme a la NOM-004-SSA3-2012
+          Documento generado por Mickerting Appointment · {today} · Este documento tiene validez oficial conforme a la NOM-004-SSA3-2012
         </p>
       </div>
     </div>

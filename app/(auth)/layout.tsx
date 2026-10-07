@@ -1,6 +1,9 @@
 import Link from 'next/link'
 import { PressPattern } from '@/components/press-pattern'
-import { TurnoLogo } from '@/components/ui/turno-logo'
+import { AppointmentLogo } from '@/components/ui/appointment-logo'
+
+// Estas pantallas dependen de la configuración de Auth en tiempo de ejecución.
+export const dynamic = 'force-dynamic'
 
 export default function AuthLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -15,7 +18,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
         </div>
         <div className="relative z-10 p-10 mt-auto">
           <Link href="/" style={{ display: 'inline-block', marginBottom: 32, color: '#ffffff' }}>
-            <TurnoLogo height={36} />
+            <AppointmentLogo height={36} />
           </Link>
           <p className="text-[26px] font-bold text-[#ebebeb] leading-tight max-w-xs" style={{ letterSpacing: '-0.02em' }}>
             Tu recepcionista<br />trabaja 24/7.
@@ -30,7 +33,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
       <div className="flex flex-col flex-1 items-center justify-center px-6 py-16">
         <div className="lg:hidden mb-10" style={{ color: '#ffffff' }}>
           <Link href="/">
-            <TurnoLogo height={32} />
+            <AppointmentLogo height={32} />
           </Link>
         </div>
         <div className="w-full max-w-[380px]">

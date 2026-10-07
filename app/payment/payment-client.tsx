@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { Check } from 'lucide-react'
 import { toast } from 'sonner'
-import { TurnoLogo } from '@/components/ui/turno-logo'
+import { AppointmentLogo } from '@/components/ui/appointment-logo'
 import { Spinner } from '@/components/ui/spinner'
 import { PLANS, DEFAULT_PLAN, isPlanKey, type PlanKey } from '@/lib/plans'
 
@@ -61,7 +61,7 @@ export function PaymentClient() {
       <div style={{ width: '100%', maxWidth: 480 }}>
 
         <div style={{ marginBottom: 32, color: '#fff' }}>
-          <TurnoLogo height={28} />
+          <AppointmentLogo height={28} />
         </div>
 
         <div style={{ marginBottom: 24 }}>
@@ -97,7 +97,7 @@ export function PaymentClient() {
                 </div>
                 <div style={{ flex: 1 }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                    <span style={{ fontSize: 14, fontWeight: 600, color: '#ebebeb' }}>{p.name.replace('Turno — ', '')}</span>
+                    <span style={{ fontSize: 14, fontWeight: 600, color: '#ebebeb' }}>{p.name.replace('Mickerting Appointment — ', '')}</span>
                     {p.bot && (
                       <span style={{ fontSize: 10, fontWeight: 600, color: '#7c3aed', border: '1px solid #7c3aed55', borderRadius: 99, padding: '1px 7px' }}>Popular</span>
                     )}
@@ -134,7 +134,7 @@ export function PaymentClient() {
           disabled={loading}
           style={{ width: '100%', height: 52, background: '#7c3aed', border: 'none', borderRadius: 12, color: '#fff', fontSize: 15, fontWeight: 600, cursor: loading ? 'not-allowed' : 'pointer', opacity: loading ? 0.7 : 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, fontFamily: 'inherit', transition: 'opacity .15s' }}
         >
-          {loading ? <Spinner size={20} color="#fff" /> : `Activar ${plan.name.replace('Turno — ', '')} — ${plan.priceLabel} MXN/mes →`}
+          {loading ? <Spinner size={20} color="#fff" /> : `Activar ${plan.name.replace('Mickerting Appointment — ', '')} — ${plan.priceLabel} MXN/mes →`}
         </button>
 
         <p style={{ textAlign: 'center', fontSize: 11, color: '#3d3d3d', marginTop: 14 }}>

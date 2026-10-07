@@ -12,7 +12,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const db = createServiceClient()
   const { data: patient } = await db
     .from('customers').select('name, organization:organizations(name)').eq('portal_token', token).single()
-  const orgName = (patient?.organization as unknown as { name: string } | null)?.name ?? 'Turno'
+  const orgName = (patient?.organization as unknown as { name: string } | null)?.name ?? 'Mickerting Appointment'
   return { title: `Mi portal — ${orgName}` }
 }
 
@@ -201,7 +201,7 @@ export default async function PatientPortalPage({ params }: Props) {
 
         {/* Footer */}
         <div className="text-center pt-2 pb-6">
-          <p className="text-xs text-zinc-600">Portal personal de {patient.name} · Turno</p>
+          <p className="text-xs text-zinc-600">Portal personal de {patient.name} · Mickerting Appointment</p>
           <p className="text-xs text-zinc-700 mt-1">Este link es personal. No lo compartas.</p>
         </div>
       </div>

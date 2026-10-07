@@ -1,5 +1,7 @@
 'use client'
 
+import { getAppUrl } from '@/lib/brand'
+
 import { useState, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import { toast } from 'sonner'
@@ -65,7 +67,7 @@ export function SettingsForm({ organization }: Props) {
 
   const copyBookingLink = async () => {
     try {
-      await navigator.clipboard.writeText(`https://quickturno.app/book/${form.slug}`)
+      await navigator.clipboard.writeText(`${getAppUrl()}/book/${form.slug}`)
       setSlugCopied(true)
       toast.success('Enlace de reservas copiado')
       setTimeout(() => setSlugCopied(false), 2000)
@@ -199,7 +201,7 @@ export function SettingsForm({ organization }: Props) {
           <label style={s.label}>Slug de reserva pública</label>
           <div style={{ display: 'flex', alignItems: 'center', background: 'var(--background)', border: `1px solid ${slugError ? '#ef4444' : 'var(--border)'}`, borderRadius: 8, overflow: 'hidden' }}>
             <span style={{ padding: '0 10px', fontSize: 12, color: 'var(--muted-foreground)', whiteSpace: 'nowrap', borderRight: '1px solid var(--border)', height: 38, display: 'flex', alignItems: 'center' }}>
-              quickturno.app/book/
+              /book/
             </span>
             <input
               style={{ ...s.input, border: 'none', borderRadius: 0 }}

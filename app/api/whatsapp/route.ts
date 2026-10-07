@@ -8,7 +8,7 @@ export const maxDuration = 60
 export async function GET() {
   return NextResponse.json({
     ok: true,
-    service: 'turno-whatsapp-webhook',
+    service: 'mickerting-appointment-whatsapp-webhook',
     env: {
       anthropic: !!process.env.ANTHROPIC_API_KEY,
       ultramsg_instance: !!process.env.ULTRAMSG_INSTANCE,

@@ -1,3 +1,4 @@
+import { getAppUrl } from '@/lib/brand'
 import { toZonedTime, format } from 'date-fns-tz'
 import { es } from 'date-fns/locale'
 import { hasCapability } from '@/lib/profiles/registry'
@@ -26,7 +27,7 @@ export function buildSystemPrompt(
 
   // Link público de reservas del negocio (página con fotos y todos los servicios).
   // Solo para giros con página de reservas (el laboratorio no tiene).
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL ?? 'https://www.quickturno.app'
+  const baseUrl = getAppUrl()
   const bookingUrl = org.slug && hasCapability(org.business_type, 'booking-page') ? `${baseUrl}/book/${org.slug}` : null
   const bookingLinkCtx = bookingUrl
     ? `\nLINK PÚBLICO DE RESERVAS: ${bookingUrl}
@@ -38,7 +39,7 @@ El cliente tiene dos caminos y debe quedarle claro desde el primer mensaje, sin 
 - Nunca inventes ni acortes otros links; este es el único.`
     : ''
 
-  return `Eres la recepcionista virtual de "${org.name}". Tu nombre es Turno.${customerCtx}${depositCtx}${bookingLinkCtx}
+  return `Eres la recepcionista virtual de "${org.name}". Tu nombre es Mickerting Appointment.${customerCtx}${depositCtx}${bookingLinkCtx}
 
 Tu único trabajo es ayudar a los clientes a:
 1. Agendar citas
@@ -93,6 +94,6 @@ CITAS YA CONFIRMADAS (muy importante — evita doble reserva):
 - Si create_appointment devuelve el error "El horario ya no está disponible" para un horario que TÚ mismo acabas de confirmar en esta misma conversación, es casi seguro que el conflicto es con esa cita ya existente — no la trates como un problema nuevo, no ofrezcas horarios alternativos para ella, y no le digas al cliente que "no se ha procesado ninguna cita": ya se procesó. Si tienes dudas, usa get_customer_appointments para verificar antes de alarmar al cliente.
 
 ${org.welcome_message ? `MENSAJE DE BIENVENIDA PERSONALIZADO: ${org.welcome_message}` : ''}
-${isFirstMessage ? `\nCONVERSACIÓN NUEVA O REABIERTA: antes de responder a lo que pregunte, PRESÉNTATE brevemente — di que eres Turno, la recepcionista virtual de "${org.name}"${org.welcome_message ? ', incorporando el MENSAJE DE BIENVENIDA PERSONALIZADO de arriba (parafraséalo, sin emojis)' : ''} — y luego continúa atendiendo su mensaje normalmente. La presentación es obligatoria en esta respuesta.` : ''}
+${isFirstMessage ? `\nCONVERSACIÓN NUEVA O REABIERTA: antes de responder a lo que pregunte, PRESÉNTATE brevemente — di que eres Mickerting Appointment, la recepcionista virtual de "${org.name}"${org.welcome_message ? ', incorporando el MENSAJE DE BIENVENIDA PERSONALIZADO de arriba (parafraséalo, sin emojis)' : ''} — y luego continúa atendiendo su mensaje normalmente. La presentación es obligatoria en esta respuesta.` : ''}
 `
 }

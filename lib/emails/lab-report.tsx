@@ -29,7 +29,7 @@ export function labReportEmailHtml({ patientName, businessName, folio, reportUrl
           </p>
         </td></tr>
       </table>
-      <p style="margin:16px 0 0;font-size:11px;color:#b0b0b0;">${businessName} · Enviado con QuickTurno</p>
+      <p style="margin:16px 0 0;font-size:11px;color:#b0b0b0;">${businessName} · Enviado con Mickerting Appointment</p>
     </td></tr>
   </table>
 </body>

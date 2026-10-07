@@ -3,6 +3,16 @@ import type { NextRequest } from 'next/server'
 import { createServerClient } from '@supabase/ssr'
 
 export async function proxy(request: NextRequest) {
+  // La portada puede revisarse antes de conectar la base de datos.
+  // El resto del servicio permanece cerrado hasta configurar Supabase.
+  if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+    if (request.nextUrl.pathname === '/') return NextResponse.next({ request })
+    return new NextResponse('El servicio de citas estará disponible pronto.', {
+      status: 503,
+      headers: { 'Cache-Control': 'no-store', 'Content-Type': 'text/plain; charset=utf-8' },
+    })
+  }
+
   let supabaseResponse = NextResponse.next({ request })
 
   const supabase = createServerClient(

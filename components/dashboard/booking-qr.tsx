@@ -1,5 +1,7 @@
 'use client'
 
+import { getAppUrl } from '@/lib/brand'
+
 import { useEffect, useState } from 'react'
 import QRCode from 'qrcode'
 import { Download, Printer } from 'lucide-react'
@@ -11,7 +13,7 @@ interface Props {
 
 export function BookingQr({ slug, businessName }: Props) {
   const [dataUrl, setDataUrl] = useState('')
-  const bookingUrl = `https://www.quickturno.app/book/${slug}`
+  const bookingUrl = `${getAppUrl()}/book/${slug}`
 
   useEffect(() => {
     QRCode.toDataURL(bookingUrl, { width: 480, margin: 2, color: { dark: '#000000', light: '#ffffff' } })

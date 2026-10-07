@@ -18,7 +18,7 @@ export interface Plan {
 export const PLANS: Record<PlanKey, Plan> = {
   agenda: {
     key: 'agenda',
-    name: 'Turno — Agenda',
+    name: 'Mickerting Appointment — Agenda',
     amount: 150000,
     priceLabel: '$1,500',
     description: 'Tu agenda en orden, sin bot de WhatsApp',
@@ -27,7 +27,7 @@ export const PLANS: Record<PlanKey, Plan> = {
   },
   asistente: {
     key: 'asistente',
-    name: 'Turno — Agenda + Asistente',
+    name: 'Mickerting Appointment — Agenda + Asistente',
     amount: 200000,
     priceLabel: '$2,000',
     description: 'Tu WhatsApp contesta y agenda solo, 24/7',

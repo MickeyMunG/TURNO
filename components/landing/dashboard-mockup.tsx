@@ -73,7 +73,7 @@ export function DashboardMockup({ isDay }: Props) {
           <span style={{ width: 9, height: 9, borderRadius: 99, background: '#28c840' }} />
         </div>
         <div style={{ flex: 1, height: 22, borderRadius: 6, background: d.urlBg, border: `1px solid ${d.border}`, display: 'flex', alignItems: 'center', padding: '0 10px', transition: 'background .7s, border-color .7s' }}>
-          <span style={{ fontSize: 10, color: d.muted }}>app.quickturno.app/appointments</span>
+          <span style={{ fontSize: 10, color: d.muted }}>Mickerting Appointment / agenda</span>
         </div>
       </div>
 

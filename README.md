@@ -1,145 +1,79 @@
-# Turno
+# Mickerting Appointment
 
-Recepcionista digital para negocios basados en citas. Opera 24/7 por WhatsApp — agenda, confirma, reagenda y cancela citas de forma automática usando IA.
+Plataforma de citas y recepcionista digital para negocios de servicios. Adaptación de [Turno, de AxelSandovalH](https://github.com/AxelSandovalH/Turno), con identidad de Mickerting Appointment.
 
-## Stack
+## Funciones incluidas
 
-| Capa | Tecnología |
-|---|---|
-| Frontend | Next.js 15, TypeScript, TailwindCSS, shadcn/ui |
-| Backend | Next.js API Routes |
-| Base de datos | Supabase (PostgreSQL + RLS) |
-| Auth | Supabase Auth |
-| IA | Anthropic Claude API |
-| WhatsApp | UltraMsg |
-| Pagos | Stripe |
-| Deploy | Vercel |
+- Agenda por profesional, servicios, disponibilidad y bloqueos de horario.
+- Página pública de reservas y código QR por negocio.
+- Clientes, conversaciones y confirmaciones por WhatsApp.
+- Asistente con Claude y conexión UltraMsg por organización.
+- Suscripciones y anticipos con Stripe.
+- Recordatorios, portal de pacientes y módulos según el giro del negocio.
 
-## Estructura del proyecto
+## Desarrollo local
 
-```
-turno/
-├── app/
-│   ├── (auth)/
-│   │   ├── login/
-│   │   └── register/
-│   ├── (dashboard)/
-│   │   ├── appointments/     # vista de citas del día
-│   │   ├── staff/            # gestión de barberos
-│   │   ├── services/         # servicios y precios
-│   │   ├── schedule/         # horarios y bloqueos
-│   │   └── settings/         # configuración del negocio
-│   └── api/
-│       ├── onboarding/       # creación de organización en registro
-│       ├── webhook/
-│       │   ├── whatsapp/     # entrada de mensajes UltraMsg
-│       │   └── stripe/       # eventos de suscripción
-│       ├── appointments/     # CRUD de citas
-│       └── availability/     # slots disponibles
-├── lib/
-│   ├── agent/                # Claude booking agent
-│   │   ├── agent.ts
-│   │   ├── tools.ts
-│   │   └── prompts.ts
-│   └── supabase/
-│       ├── client.ts         # browser client
-│       ├── server.ts         # server component client
-│       └── service.ts        # service role (API routes only)
-├── components/
-│   ├── ui/                   # shadcn/ui
-│   └── dashboard/            # componentes del panel
-├── types/
-│   └── database.ts           # tipos TypeScript del schema
-├── supabase/
-│   └── migrations/
-│       └── 001_initial_schema.sql
-└── middleware.ts             # auth guard
-```
+Requiere Node.js 20.9 o posterior. El proyecto usa Next.js 16.2.6, React 19, TypeScript y Tailwind CSS 4.
 
-## Setup local
-
-### 1. Requisitos
-
-- Node.js 20+
-- Cuenta en [Supabase](https://supabase.com)
-- Cuenta en [UltraMsg](https://ultramsg.com)
-- Cuenta en [Stripe](https://stripe.com)
-- API key de [Anthropic](https://console.anthropic.com)
-
-### 2. Instalar dependencias
-
-```bash
-npm install
-```
-
-### 3. Variables de entorno
-
-```bash
-cp .env.example .env.local
-# Rellena los valores en .env.local
-```
-
-### 4. Base de datos
-
-En el SQL Editor de tu proyecto Supabase, ejecuta:
-
-```
-supabase/migrations/001_initial_schema.sql
-```
-
-### 5. Correr en desarrollo
-
-```bash
+```powershell
+npm ci
+Copy-Item .env.example .env.local
 npm run dev
 ```
 
-### 6. Webhook local para WhatsApp
+También puedes usar `pnpm install --frozen-lockfile` y `pnpm dev` con el lockfile incluido.
 
-```bash
-npx ngrok http 3000
-# Configura https://xxxx.ngrok.io/api/webhook/whatsapp en UltraMsg
+Abre http://localhost:3000. La portada se puede revisar sin credenciales. El acceso al servicio de citas responde 503 hasta configurar Supabase; no utiliza una base de datos de demostración ni datos del autor original.
+
+## Configuración de tu instalación
+
+Rellena `.env.local` con las credenciales de tus propios servicios:
+
+| Variable | Uso |
+| --- | --- |
+| `NEXT_PUBLIC_APP_URL` | URL de esta instalación, sin `/` final. En producción, usa el dominio HTTPS real. |
+| `NEXT_PUBLIC_SUPABASE_URL` | URL de tu proyecto Supabase. |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Clave pública compatible con los clientes existentes. |
+| `SUPABASE_SERVICE_ROLE_KEY` | Clave de servidor; nunca se envía al navegador. |
+| `ANTHROPIC_API_KEY` | Asistente de reservas. |
+| `ULTRAMSG_INSTANCE`, `ULTRAMSG_TOKEN` | Conexión WhatsApp de respaldo; las organizaciones también pueden configurar su propia instancia. |
+| `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET` | Pagos y verificación de eventos. Comienza con credenciales de prueba. |
+| `RESEND_API_KEY`, `RESEND_FROM_EMAIL` | Correos y remitente de un dominio verificado. Sin remitente propio se usa el remitente de pruebas de Resend. |
+| `CRON_SECRET` | Secreto aleatorio para autorizar las tareas programadas. |
+
+No publiques `.env.local` ni las claves privadas en GitHub. `.env.example` contiene únicamente campos vacíos.
+
+### Base de datos
+
+En un proyecto Supabase propio y vacío, aplica las migraciones SQL de `supabase/migrations` en orden, desde `001_initial_schema.sql` hasta `022_tours_vertical.sql`. Configura también los buckets y políticas de Storage que requieran las cargas de archivos. Los scripts y seeds heredados contienen identidades de demostración del proyecto original: revísalos antes de usarlos y ejecútalos únicamente contra una base de datos de pruebas.
+
+Configura la URL del sitio y la redirección de autenticación a `${NEXT_PUBLIC_APP_URL}/auth/callback` en Supabase. El inicio de sesión con Google requiere habilitar el proveedor en Supabase.
+
+### Webhooks y recordatorios
+
+- WhatsApp: `${NEXT_PUBLIC_APP_URL}/api/whatsapp`.
+- Stripe: `${NEXT_PUBLIC_APP_URL}/api/stripe-webhook`.
+- En GitHub Actions, configura los secrets `APP_URL` y `CRON_SECRET` para el workflow de recordatorios.
+- Los endpoints adicionales `/api/cron/confirmation-check` y `/api/cron/deposit-timeout` necesitan programación externa según su frecuencia operativa.
+
+### Planes
+
+Los precios heredados están centralizados en `lib/plans.ts`: Agenda ($1,500 MXN/mes) y Agenda + Asistente ($2,000 MXN/mes). Cambia esa configuración antes de comercializar planes distintos.
+
+## Comprobaciones
+
+```powershell
+npx tsc --noEmit
+npm run build
+npm run lint
 ```
 
-## Cómo funciona el agente
+La comprobación de tipos y el build deben realizarse antes del despliegue. Los servicios externos requieren credenciales propias para probar el flujo completo de registro, citas, WhatsApp y pagos.
 
-```
-Cliente WhatsApp → UltraMsg webhook → /api/webhook/whatsapp
-                                              │
-                                     Identifica tenant
-                                     por número de WhatsApp
-                                              │
-                                     Carga contexto + historial
-                                              │
-                                     Claude API con tools
-                                              │
-                         ┌────────────────────┼───────────────────┐
-                         │                    │                   │
-                  get_available_slots  create_appointment  cancel_appointment
-                                              │
-                                     Respuesta por UltraMsg
-```
+## Identidad
 
-## Pricing
+`lib/brand.ts` define el nombre, descripción y resolución de URL. `components/ui/appointment-logo.tsx` contiene el logotipo adaptable a fondos claros y oscuros. Los iconos de la aplicación usan el mismo símbolo de calendario.
 
-| Plan | Precio |
-|---|---|
-| Setup | $800 MXN (one-time) |
-| Starter | $399 MXN/mes — hasta 3 barberos |
-| Pro | $699 MXN/mes — ilimitado |
+## Procedencia
 
-Trial: 14 días gratis, sin tarjeta.
-
-## Roadmap
-
-- [x] Schema de base de datos
-- [x] Auth + onboarding
-- [x] Dashboard shell (citas del día)
-- [ ] Gestión de staff, servicios y horarios
-- [ ] Agente Claude + webhook UltraMsg
-- [ ] Recordatorios automáticos
-- [ ] Stripe subscriptions + trial
-- [ ] Suspensión automática por falta de pago
-
-## Licencia
-
-Privado. Todos los derechos reservados.
+Se conserva el historial Git del repositorio original y su atribución. El README original indicaba: “Privado. Todos los derechos reservados.” Esta adaptación no añade ni cambia la licencia del código original.

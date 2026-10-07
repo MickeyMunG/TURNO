@@ -16,4 +16,4 @@ export const resend: Resend = process.env.RESEND_API_KEY
       },
     } as unknown as Resend)
 
-export const FROM = 'QuickTurno <equipo@quickturno.app>'
+export const FROM = process.env.RESEND_FROM_EMAIL || 'Mickerting Appointment <onboarding@resend.dev>'

@@ -1,3 +1,4 @@
+import { getAppUrl } from '@/lib/brand'
 import { NextResponse } from 'next/server'
 import { createServiceClient } from '@/lib/supabase/service'
 import { requireOrganization } from '@/lib/auth'
@@ -30,7 +31,7 @@ export async function POST(req: Request) {
       await db.from('customers').update({ portal_token: token }).eq('id', patientId)
     }
 
-    const baseUrl = process.env.NEXT_PUBLIC_APP_URL ?? 'https://quickturno.app'
+    const baseUrl = getAppUrl()
     const portalUrl = `${baseUrl}/p/${token}`
 
     const label = customerLabel(organization.business_type).toLowerCase()

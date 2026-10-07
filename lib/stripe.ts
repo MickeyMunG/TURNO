@@ -1,3 +1,4 @@
+import { getAppUrl } from '@/lib/brand'
 import Stripe from 'stripe'
 
 // El SDK de Stripe lanza al construirse si falta la API key. Si eso pasa a
@@ -56,8 +57,8 @@ export async function createDepositCheckoutSession({
         },
       },
     }],
-    success_url: `${process.env.NEXT_PUBLIC_APP_URL}/deposit/success`,
-    cancel_url: `${process.env.NEXT_PUBLIC_APP_URL}/deposit/cancelled`,
+    success_url: `${getAppUrl()}/deposit/success`,
+    cancel_url: `${getAppUrl()}/deposit/cancelled`,
     metadata: { type: 'deposit', organization_id: organizationId, appointment_id: appointmentId },
   })
   return { url: session.url!, sessionId: session.id }

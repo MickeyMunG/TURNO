@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
 import { toast } from 'sonner'
 import { Spinner } from '@/components/ui/spinner'
-import { TurnoLogo } from '@/components/ui/turno-logo'
+import { AppointmentLogo } from '@/components/ui/appointment-logo'
 import { ALL_PROFILES } from '@/lib/profiles/registry'
 
 const s = {
@@ -106,7 +106,7 @@ export default function OnboardingPage() {
     <div style={{ minHeight: '100vh', background: '#0c0c0c', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 24, fontFamily: 'var(--font-geist-sans)' }}>
       <div style={{ width: '100%', maxWidth: 400 }}>
         <div style={{ marginBottom: 32, color: '#ffffff' }}>
-          <TurnoLogo height={28} />
+          <AppointmentLogo height={28} />
         </div>
 
         <div style={{ marginBottom: 28 }}>

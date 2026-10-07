@@ -50,7 +50,7 @@ export default async function AdminPage() {
     <div className="space-y-8">
       <div>
         <h1 className="text-2xl font-semibold tracking-tight">Dashboard</h1>
-        <p className="text-sm text-muted-foreground mt-1">Vista general de la plataforma Turno</p>
+        <p className="text-sm text-muted-foreground mt-1">Vista general de la plataforma Mickerting Appointment</p>
       </div>
 
       {/* Stats */}

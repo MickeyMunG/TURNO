@@ -64,7 +64,7 @@ export async function POST(req: Request) {
             resend.emails.send({
               from: FROM,
               to,
-              subject: `¡Bienvenido a QuickTurno, ${org.name}!`,
+              subject: `¡Bienvenido a Mickerting Appointment, ${org.name}!`,
               html: welcomeEmailHtml(props),
               text: welcomeEmailText(props),
             }).catch(err => console.error('[stripe-webhook] welcome email failed:', err))

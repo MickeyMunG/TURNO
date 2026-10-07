@@ -19,7 +19,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
       {/* Sidebar */}
       <aside className="w-56 border-r border-border flex flex-col shrink-0">
         <div className="px-5 py-4 border-b border-border flex items-center gap-2">
-          <span className="font-semibold text-sm tracking-tight">Turno</span>
+          <span className="font-semibold text-sm tracking-tight">Mickerting Appointment</span>
           <span className="text-[10px] text-muted-foreground bg-muted px-1.5 py-0.5 rounded-full">Admin</span>
         </div>
         <nav className="flex-1 px-2 py-3 space-y-0.5">

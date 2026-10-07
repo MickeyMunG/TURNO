@@ -21,7 +21,7 @@ async function sendWhatsApp(to: string, body: string) {
 }
 
 function buildSystemPrompt(org: { name: string; timezone: string; welcome_message: string | null }) {
-  return `Eres la recepcionista virtual de "${org.name}". Tu nombre es Turno.
+  return `Eres la recepcionista virtual de "${org.name}". Tu nombre es Mickerting Appointment.
 
 Tu único trabajo es ayudar a los clientes a:
 1. Agendar citas
